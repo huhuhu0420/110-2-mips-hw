@@ -1,11 +1,7 @@
 .data
-	fdata: .word 0,0,0,0,0,0,0,0,0,0,0
-	comma: .asciiz ","
-	nextline: .asciiz "\n" 
 
 .text
 main:
-	la $s3 fdata  #s3 = fdata
 
 	li $v0 5
 	syscall
@@ -17,20 +13,14 @@ main:
 	move $a0 $v0  #print outcome
 	li $v0 1
 	syscall
-	la $a0 nextline
-	li $v0 4
-	syscall
-	
-	li $t0 0  #t0 = i = 0
-	j printData
 	
 printData_ret:
 	li $v0 10
 	syscall
 
 fib:
-	bgt $a0 1 fib_recursion
-	move $v0 $a0
+	bgt $a0 2 fib_recursion
+	li $v0 1 
 	jr $ra	
 	
 fib_recursion:
@@ -55,19 +45,3 @@ fib_recursion:
 	add $sp $sp 12
 	
 	jr $ra
-	
-printData:
-	#t0 = i
-	bgt $t0 36 printData_ret
-	add $t1 $t0 $s3  #t1 = fdata[i]
-	
-	lw $a0 0($t1)
-	li $v0 1
-	syscall
-	la $a0 comma
-	li $v0 4
-	syscall
-	
-	addi $t0 $t0 4  #i++ 
-	j printData
-	
