@@ -47,8 +47,6 @@ default:
 	mul.d $f2 $f2 $f6
 	################
 	cvt.w.d $f14 $f2
-	mfc1 $s0 $f14
-	mtc1 $s0 $f14
 	cvt.d.w $f14 $f14
 	################
 	div.d $f14 $f14 $f6
